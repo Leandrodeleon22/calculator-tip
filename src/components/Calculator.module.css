@@ -1,0 +1,16 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator {
+  height: 48rem;
+  min-width: 92rem;
+  background: white;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+}

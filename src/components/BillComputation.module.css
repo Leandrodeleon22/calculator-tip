@@ -1,0 +1,135 @@
+.container {
+  min-width: 40.3rem;
+  padding: 0;
+}
+
+input::placeholder {
+  opacity: 0.5;
+  font-size: 3rem;
+}
+
+.input input {
+  /* display: flex; */
+  min-width: 100%;
+  height: 5rem;
+  margin: 0;
+  border: none;
+  background-color: #f3f8fb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: var(--very-dark-cyan);
+  /* position: relative; */
+  font-size: 3rem;
+  text-align: right;
+}
+
+input:focus {
+  outline: none;
+  border-color: none;
+  /* box-shadow: 0 0 5px #007bff; */
+}
+
+.input {
+  position: relative;
+}
+.input span {
+  position: absolute;
+  z-index: 100;
+  font-size: 3rem;
+  top: 3.5rem;
+  left: 0.75rem;
+  opacity: 0.5;
+}
+
+.input h3 {
+  color: var(--dark-grayish-cyan);
+  font-size: 1.6rem;
+}
+.tip {
+  /* width: 93%; */
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.3rem;
+  padding-top: 1rem;
+}
+
+.tip input::placeholder {
+  position: relative;
+  top: -2px;
+  text-align: right;
+
+  font-size: 2rem;
+}
+
+.tip input {
+  text-align: right;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.5rem;
+  border: 1px solid gray;
+  font-size: 2.25rem;
+  width: 12.566rem;
+  color: var(--dark-grayish-cyan);
+  padding-right: 0.5rem;
+}
+
+.tip span {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: flex-end;
+  color: var(--dark-grayish-cyan);
+  font-size: 1.6rem;
+}
+
+.btn {
+  height: 4.8rem;
+  border: none;
+  background-color: var(--very-dark-cyan);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 2.25rem;
+  cursor: pointer;
+}
+
+/* .tip button:last-of-type {
+  background-color: #f3f8fb;
+  color: var(--dark-grayish-cyan);
+} */
+
+.tip .active {
+  background-color: var(--primary-strong-cyan);
+}
+
+.people input {
+  min-width: 100%;
+  height: 5rem;
+  margin: 0;
+  border: none;
+  background-color: #f3f8fb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  /* font-size: 1.6rem; */
+  color: var(--very-dark-cyan);
+  /* position: relative; */
+  font-size: 3rem;
+  text-align: right;
+}
+
+.people {
+  position: relative;
+  padding-top: 4.2rem;
+}
+.people img {
+  position: absolute;
+  top: 9.25rem;
+  left: 1rem;
+  z-index: 1001;
+}
+
+.people h3 {
+  color: var(--dark-grayish-cyan);
+  font-size: 1.6rem;
+}

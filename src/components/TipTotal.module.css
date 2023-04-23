@@ -1,0 +1,59 @@
+.container {
+  min-width: 40.1rem;
+  height: 40.15rem;
+  background-color: var(--very-dark-cyan);
+  border-radius: 1.5rem;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tip {
+  display: flex;
+  width: 100%;
+  height: 8rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.amount {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 4.5rem;
+  color: var(--primary-strong-cyan);
+  letter-spacing: -0.25px;
+  margin: 0;
+  padding: 0;
+  line-height: 4rem;
+}
+
+.tip p {
+  display: flex;
+  margin: 0;
+}
+
+.tip h3 {
+  font-size: 1.6rem;
+  color: white;
+  margin: 0;
+}
+
+.description span {
+  color: var(--grayish-cyan);
+
+  font-size: 1.2rem;
+}
+
+.btn {
+  width: 100%;
+  height: 4.5rem;
+  border-style: none;
+  margin-top: 10rem;
+  font-size: 1.7rem;
+  color: var(--very-dark-cyan);
+  text-transform: uppercase;
+  background-color: var(--primary-strong-cyan);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
