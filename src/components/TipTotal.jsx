@@ -1,7 +1,11 @@
 import React from "react";
 import classes from "./TipTotal.module.css";
+import { useSelector } from "react-redux";
 
 const TipTotal = () => {
+  const { totalAmount, tipAmountPerson } = useSelector((state) => {
+    return state.calculator;
+  });
   return (
     <section className={classes.container}>
       <div className={classes.tip}>
@@ -11,7 +15,7 @@ const TipTotal = () => {
         </div>
         <div className={classes.amount}>
           <span>$</span>
-          <p>4.27</p>
+          <p>{tipAmountPerson.toFixed(2)}</p>
         </div>
       </div>
 
@@ -22,7 +26,7 @@ const TipTotal = () => {
         </div>
         <div className={classes.amount}>
           <span>$</span>
-          <p>32.79</p>
+          <p>{totalAmount.toFixed(2)}</p>
         </div>
       </div>
       <button className={classes.btn}> reset</button>

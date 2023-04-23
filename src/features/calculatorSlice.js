@@ -2,19 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tipOptions: [
-    { id: 1, tip: 5, isActive: false },
-    { id: 2, tip: 10, isActive: false },
-    { id: 3, tip: 15, isActive: false },
-    { id: 4, tip: 25, isActive: false },
-    { id: 5, tip: 50, isActive: false },
+    { id: 1, tip: 5 },
+    { id: 2, tip: 10 },
+    { id: 3, tip: 15 },
+    { id: 4, tip: 25 },
+    { id: 5, tip: 50 },
   ],
   bill: "",
 
+  tipPercentage: "",
   numOfPeople: "",
   isLoading: true,
   tipAmountPerson: 0,
   totalAmount: 0,
-  isActive: false,
+  isActive: true,
+  customizeTip: "",
 };
 
 const calculatorSlice = createSlice({
@@ -35,16 +37,36 @@ const calculatorSlice = createSlice({
       //   }
       state.numOfPeople = action.payload;
     },
+
+    customizeTipInputChange: (state, action) => {
+      state.tipPercentage = action.payload;
+    },
+
     calculateTip: (state, action) => {
-      const selectedTip = state.tipOptions.find((item) => {
+      state.tipOptions.find((item) => {
         // console.log(item, action.payload.id);
         // console.log(action.payload);
         return item.tip === action.payload;
       });
+
+      state.tipPercentage = action.payload;
+    },
+    calculateTotal: (state, action) => {
+      let percentage = state.tipPercentage / 100;
+      let tip = percentage * +state.bill;
+      state.totalAmount =
+        state.numOfPeople > 0 ? (+state.bill + tip) / state.numOfPeople : 0;
+      state.tipAmountPerson =
+        state.numOfPeople > 0 ? tip / state.numOfPeople : 0;
     },
   },
 });
 
-export const { billInputChange, numOfPeopleInputChange, calculateTip } =
-  calculatorSlice.actions;
+export const {
+  billInputChange,
+  numOfPeopleInputChange,
+  calculateTip,
+  customizeTipInputChange,
+  calculateTotal,
+} = calculatorSlice.actions;
 export default calculatorSlice.reducer;

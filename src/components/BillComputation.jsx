@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./BillComputation.module.css";
 import iconPerson from "../assets/images/icon-person.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,15 +6,29 @@ import {
   billInputChange,
   numOfPeopleInputChange,
   calculateTip,
+  customizeTipInputChange,
+  calculateTotal,
 } from "../features/calculatorSlice";
 
 const BillComputation = () => {
   // const [inputValue, setInputValue] = useState("");
   const [activeButtonId, setActiveButtonId] = useState(null);
   const dispatch = useDispatch();
-  const { tipOptions, bill, numOfPeople } = useSelector((state) => {
+  const {
+    tipOptions,
+    bill,
+    numOfPeople,
+    customizeTip,
+    tipPercentage,
+    totalAmount,
+    isActive,
+  } = useSelector((state) => {
     return state.calculator;
   });
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [bill, tipPercentage, customizeTip, totalAmount, isActive, numOfPeople]);
   // console.log(tipOptions);
   // const tipOptions = ["5%", "10%", "15%", "25%", "50%", "custom"];
 
@@ -49,6 +63,13 @@ const BillComputation = () => {
     else if (val === "" || val === "-") dispatch(numOfPeopleInputChange(val));
   };
 
+  const customizeTipHandle = (e) => {
+    const val = e.target.value;
+
+    if (e.target.validity.valid) dispatch(customizeTipInputChange(val));
+    else if (val === "" || val === "-") dispatch(customizeTipInputChange(val));
+  };
+
   return (
     <section className={classes.container}>
       <div className={classes.input}>
@@ -73,7 +94,9 @@ const BillComputation = () => {
               key={item.id}
               id={item.id}
               className={`${classes["btn"]} ${
-                item.id === activeButtonId ? classes["active"] : classes[""]
+                isActive && item.id === activeButtonId
+                  ? classes["active"]
+                  : classes[""]
               }`}
               onClick={() => {
                 tipHandle(item.tip);
@@ -97,6 +120,9 @@ const BillComputation = () => {
           pattern="^-?[1-9]\d*\.?\d*$"
           id="tipLabel"
           placeholder="customize"
+          value={tipPercentage}
+          onFocus={() => setActiveButtonId(null)}
+          onChange={customizeTipHandle}
         />
       </div>
       <div className={classes.people}>
