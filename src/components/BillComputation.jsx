@@ -8,11 +8,12 @@ import {
   calculateTip,
   customizeTipInputChange,
   calculateTotal,
+  setActiveButtonId,
 } from "../features/calculatorSlice";
 
 const BillComputation = () => {
   // const [inputValue, setInputValue] = useState("");
-  const [activeButtonId, setActiveButtonId] = useState(null);
+  // const [activeButtonId, setActiveButtonId] = useState(null);
   const dispatch = useDispatch();
   const {
     tipOptions,
@@ -22,6 +23,7 @@ const BillComputation = () => {
     tipPercentage,
     totalAmount,
     isActive,
+    activeButtonId,
   } = useSelector((state) => {
     return state.calculator;
   });
@@ -100,7 +102,7 @@ const BillComputation = () => {
               }`}
               onClick={() => {
                 tipHandle(item.tip);
-                setActiveButtonId(item.id);
+                dispatch(setActiveButtonId(item.id));
               }}
             >
               {item.tip}%
@@ -121,7 +123,7 @@ const BillComputation = () => {
           id="tipLabel"
           placeholder="customize"
           value={tipPercentage}
-          onFocus={() => setActiveButtonId(null)}
+          onFocus={() => dispatch(setActiveButtonId(null))}
           onChange={customizeTipHandle}
         />
       </div>

@@ -1,8 +1,10 @@
 import React from "react";
 import classes from "./TipTotal.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { reset, setActiveButtonId } from "../features/calculatorSlice";
 
 const TipTotal = () => {
+  const dispatch = useDispatch();
   const { totalAmount, tipAmountPerson } = useSelector((state) => {
     return state.calculator;
   });
@@ -29,7 +31,16 @@ const TipTotal = () => {
           <p>{totalAmount.toFixed(2)}</p>
         </div>
       </div>
-      <button className={classes.btn}> reset</button>
+      <button
+        className={classes.btn}
+        onClick={() => {
+          dispatch(reset());
+          dispatch(setActiveButtonId(null));
+        }}
+      >
+        {" "}
+        reset
+      </button>
     </section>
   );
 };

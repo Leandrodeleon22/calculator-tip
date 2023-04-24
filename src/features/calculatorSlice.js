@@ -17,6 +17,7 @@ const initialState = {
   totalAmount: 0,
   isActive: true,
   customizeTip: "",
+  activeButtonId: null,
 };
 
 const calculatorSlice = createSlice({
@@ -59,6 +60,16 @@ const calculatorSlice = createSlice({
       state.tipAmountPerson =
         state.numOfPeople > 0 ? tip / state.numOfPeople : 0;
     },
+    reset: (state) => {
+      state.bill = "";
+      state.tipPercentage = "";
+      state.numOfPeople = "";
+      state.tipAmountPerson = 0;
+      state.totalAmount = 0;
+    },
+    setActiveButtonId: (state, action) => {
+      state.activeButtonId = action.payload;
+    },
   },
 });
 
@@ -68,5 +79,7 @@ export const {
   calculateTip,
   customizeTipInputChange,
   calculateTotal,
+  reset,
+  setActiveButtonId,
 } = calculatorSlice.actions;
 export default calculatorSlice.reducer;
