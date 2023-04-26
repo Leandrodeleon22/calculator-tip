@@ -9,6 +9,7 @@ import {
   customizeTipInputChange,
   calculateTotal,
   setActiveButtonId,
+  calculateCustomizeTip,
 } from "../features/calculatorSlice";
 
 const BillComputation = () => {
@@ -59,17 +60,22 @@ const BillComputation = () => {
   };
 
   const numOfPeopleHandleChange = (e) => {
-    const val = e.target.value;
+    let val = e.target.value;
 
     if (e.target.validity.valid) dispatch(numOfPeopleInputChange(val));
     else if (val === "" || val === "-") dispatch(numOfPeopleInputChange(val));
   };
 
   const customizeTipHandle = (e) => {
-    const val = e.target.value;
+    let val = e.target.value;
 
-    if (e.target.validity.valid) dispatch(customizeTipInputChange(val));
-    else if (val === "" || val === "-") dispatch(customizeTipInputChange(val));
+    if (val.length > 1 && val[0] === "0" && val[1] !== ".") {
+      // if the first character is '0' and the second is not a decimal point
+      val = val.slice(1); // remove the leading zero
+    }
+
+    if (e.target.validity.valid) dispatch(calculateCustomizeTip(val));
+    else if (val === "" || val === "-") dispatch(calculateCustomizeTip(val));
   };
 
   return (
@@ -119,11 +125,14 @@ const BillComputation = () => {
         <input
           className={classes.tipCustomize}
           type="tel"
-          pattern="^-?[1-9]\d*\.?\d*$"
+          pattern="^-?[0-9]\d*\.?\d*$"
           id="tipLabel"
           placeholder="customize"
-          value={tipPercentage}
-          onFocus={() => dispatch(setActiveButtonId(null))}
+          value={customizeTip}
+          onFocus={() => {
+            dispatch(calculateTip(0));
+            dispatch(setActiveButtonId(null));
+          }}
           onChange={customizeTipHandle}
         />
       </div>

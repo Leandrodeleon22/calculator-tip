@@ -39,33 +39,50 @@ const calculatorSlice = createSlice({
       state.numOfPeople = action.payload;
     },
 
-    customizeTipInputChange: (state, action) => {
-      state.tipPercentage = action.payload;
-    },
-
     calculateTip: (state, action) => {
-      state.tipOptions.find((item) => {
-        // console.log(item, action.payload.id);
-        // console.log(action.payload);
-        return item.tip === action.payload;
-      });
+      // state.tipOptions.find((item) => {
+      //   // console.log(item, action.payload.id);
+      //   // console.log(action.payload);
+      //   return item.tip === action.payload;
+      // });
 
       state.tipPercentage = action.payload;
+      state.customizeTip = "";
     },
     calculateTotal: (state, action) => {
       let percentage = state.tipPercentage / 100;
       let tip = percentage * +state.bill;
       state.totalAmount =
-        state.numOfPeople > 0 ? (+state.bill + tip) / state.numOfPeople : 0;
+        state.numOfPeople > 0
+          ? (+state.bill + tip + +state.customizeTip) / state.numOfPeople
+          : 0;
       state.tipAmountPerson =
         state.numOfPeople > 0 ? tip / state.numOfPeople : 0;
     },
+
+    calculateCustomizeTip: (state, action) => {
+      state.customizeTip = action.payload;
+    },
+
+    // customizeTipInputChange: (state, action) => {
+    //   state.customizeTip = +action.payload;
+    //   let percentage = state.customizeTip / 100;
+    //   let tip = percentage * +state.bill;
+
+    //   state.totalAmount =
+    //     state.numOfPeople > 0 ? (+state.bill + tip) / state.numOfPeople : 0;
+    //   state.tipAmountPerson =
+    //     state.numOfPeople > 0 ? tip / state.numOfPeople : 0;
+
+    //   console.log(state.totalAmount, state.tipAmountPerson);
+    // },
     reset: (state) => {
       state.bill = "";
       state.tipPercentage = "";
       state.numOfPeople = "";
       state.tipAmountPerson = 0;
       state.totalAmount = 0;
+      state.customizeTip = "";
     },
     setActiveButtonId: (state, action) => {
       state.activeButtonId = action.payload;
@@ -81,5 +98,6 @@ export const {
   calculateTotal,
   reset,
   setActiveButtonId,
+  calculateCustomizeTip,
 } = calculatorSlice.actions;
 export default calculatorSlice.reducer;
