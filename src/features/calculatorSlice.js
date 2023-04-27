@@ -52,14 +52,18 @@ const calculatorSlice = createSlice({
     calculateTotal: (state, action) => {
       let percentage = state.tipPercentage / 100;
       let tip = percentage * +state.bill;
+
+      let customizeTip2 = (+state.customizeTip / 100) * state.bill;
+
+      let customizeTipPerson = tip + customizeTip2;
+
+      console.log(state.numOfPeople, customizeTipPerson / state.numOfPeople);
       state.totalAmount =
         state.numOfPeople > 0
-          ? (+state.bill + tip + +state.customizeTip) / state.numOfPeople
+          ? (+state.bill + tip + customizeTip2) / state.numOfPeople
           : 0;
       state.tipAmountPerson =
-        state.numOfPeople > 0
-          ? (tip + +state.customizeTip) / state.numOfPeople
-          : 0;
+        state.numOfPeople > 0 ? customizeTipPerson / state.numOfPeople : 0;
     },
 
     calculateCustomizeTip: (state, action) => {

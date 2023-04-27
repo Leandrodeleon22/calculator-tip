@@ -69,13 +69,17 @@ const BillComputation = () => {
   const customizeTipHandle = (e) => {
     let val = e.target.value;
 
+    console.log(val);
     if (val.length > 1 && val[0] === "0" && val[1] !== ".") {
       // if the first character is '0' and the second is not a decimal point
       val = val.slice(1); // remove the leading zero
     }
 
-    if (e.target.validity.valid) dispatch(calculateCustomizeTip(val));
-    else if (val === "" || val === "-") dispatch(calculateCustomizeTip(val));
+    if (e.target.validity.valid) {
+      dispatch(calculateCustomizeTip(val));
+    } else if (val === "" || val === "-") {
+      dispatch(calculateCustomizeTip(val));
+    }
   };
 
   return (
