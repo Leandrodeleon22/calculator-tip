@@ -57,9 +57,9 @@ input:focus {
 
 .tip input::placeholder {
   position: relative;
-  top: -2px;
+  /* top: -2px; */
   text-align: right;
-
+  margin-right: 2rem;
   font-size: 2rem;
 }
 

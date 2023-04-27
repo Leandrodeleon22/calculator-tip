@@ -57,7 +57,9 @@ const calculatorSlice = createSlice({
           ? (+state.bill + tip + +state.customizeTip) / state.numOfPeople
           : 0;
       state.tipAmountPerson =
-        state.numOfPeople > 0 ? tip / state.numOfPeople : 0;
+        state.numOfPeople > 0
+          ? (tip + +state.customizeTip) / state.numOfPeople
+          : 0;
     },
 
     calculateCustomizeTip: (state, action) => {

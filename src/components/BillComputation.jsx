@@ -127,7 +127,7 @@ const BillComputation = () => {
           type="tel"
           pattern="^-?[0-9]\d*\.?\d*$"
           id="tipLabel"
-          placeholder="customize"
+          placeholder="Custom"
           value={customizeTip}
           onFocus={() => {
             dispatch(calculateTip(0));
