@@ -133,3 +133,26 @@ input:focus {
   color: var(--dark-grayish-cyan);
   font-size: 1.6rem;
 }
+
+@media only screen and (max-width: 23.44em) {
+  .tip {
+    /* width: 93%; */
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tip input {
+    width: 20rem;
+    text-align: center;
+  }
+
+  .tip input::placeholder {
+    /* top: -2px; */
+    text-align: center;
+    margin-right: 0;
+  }
+  .people input {
+    margin-bottom: 4rem;
+  }
+}

@@ -6,11 +6,23 @@
 }
 
 .calculator {
-  height: 48rem;
+  /* height: 48rem; */
   min-width: 92rem;
   background: white;
   border-radius: 2rem;
   display: flex;
   justify-content: space-between;
   padding: 3rem;
+}
+
+@media only screen and (max-width: 23.44em) {
+  .calculator {
+    /* background: brown; */
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    min-width: 37.5rem;
+    /* height: 60rem; */
+  }
 }
