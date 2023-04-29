@@ -7,6 +7,10 @@ import TipTotal from "./TipTotal";
 const Calculator = () => {
   return (
     <main className={classes.container}>
+      <div className={classes.splitter}>
+        <span>SPLI</span>
+        <span>TTER</span>
+      </div>
       <section className={classes.calculator}>
         <BillComputation />
         <TipTotal />
